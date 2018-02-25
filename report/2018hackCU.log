@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.2.25)  25 FEB 2018 12:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.2.25)  25 FEB 2018 12:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -441,10 +441,10 @@ Package rerunfilecheck Info: File `2018hackCU.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 122.
  ) 
 Here is how much of TeX's memory you used:
- 8577 strings out of 494910
- 120249 string characters out of 6179836
- 244910 words of memory out of 5000000
- 11748 multiletter control sequences out of 15000+600000
+ 8579 strings out of 494910
+ 120266 string characters out of 6179836
+ 247910 words of memory out of 5000000
+ 11750 multiletter control sequences out of 15000+600000
  13963 words of font info for 37 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  29i,6n,47p,729b,1261s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -457,9 +457,9 @@ jknappen/ec/ecrm1200.600pk> </home/anthony/.texmf-var/fonts/pk/ljfour/jknappen/
 ec/ecrm1728.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi1
 0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-Output written on 2018hackCU.pdf (2 pages, 79263 bytes).
+Output written on 2018hackCU.pdf (2 pages, 79469 bytes).
 PDF statistics:
- 279 PDF objects out of 1000 (max. 8388607)
+ 280 PDF objects out of 1000 (max. 8388607)
  99 compressed objects within 1 object stream
  26 named destinations out of 1000 (max. 500000)
  57 words of extra memory for PDF output out of 10000 (max. 10000000)
