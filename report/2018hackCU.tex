@@ -1,0 +1,122 @@
+% astr5400/hw2/hw2.tex
+%
+% Omkar H. Ramachandran
+% omkar.ramachandran@colorado.edu
+%  
+% Anthony Tracy
+% anthony.tracy@colorado.edu
+% Aidan Bohenick
+% aidan.bohenick@colorado.edu
+%
+% LaTeX writeup of HW2
+%
+
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=1.5in,bmargin=1.5in,lmargin=1.5in,rmargin=1.5in}
+\usepackage{babel}
+\newcommand{\GeV}{\,{\rm GeV}}
+\usepackage{graphicx}
+\graphicspath{{./plots/}}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{amsmath}
+
+\lstdefinestyle{custompy}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=Python,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green},
+  commentstyle=\itshape\color{red},
+  identifierstyle=\color{black},
+  stringstyle=\color{blue},
+}
+
+
+\lstset{escapechar=@,style=custompy}
+
+\begin{document}
+
+\title{SymTEX: HackCU Demo}
+
+\author{Omkar H. Ramachandran,Anthony Tracy,Aidan Bohenick}
+\maketitle
+
+\section{Abstract}
+Here we report on the development of a new \LaTeX package SymTex. The intention behind this package is reduce the amount of work it takes to add mathematics to a \LaTeX project. Our package takes advantage of the built in command 'write18' which gives us access to python scripts within a \LaTeX document. This package will allow users the ability to write a document and ask \LaTeX to solve a mathematical equation, such as an integral or derivative, from which the package will return a formated line of the user's equation set equal to the symbolic solution. This paper reports on the current progress of this package, points out the current assumptions and where it plans to go in the future.
+
+\section{Methods}
+
+\subsection{Resources}
+
+Inorder to accomplish this task we have relied heavly on python and the SymPy's libraries, this allows us to focus less on writing our own solvers and instead allow us to focus on writing a python parser to communicate between the \LaTeX user's and python's mathematical solvers. 
+
+\subsection{Procedure}
+
+The current procedure is as follows:
+\begin{enumerate}
+  \item {Parse \LaTeX string and convert to algebraic expression.}
+  \item {Build symbolic Talbe from expressions.}
+  \item {Run expressions through SymPy.}
+  \item {Return expressions to \LaTeX.}
+\end{enumerate}
+
+\subsection{Assumptions}
+
+There have been a few assumptions made as this is just the start of this project and this is the first report to be made. As we continue to complete this project these assumptions will be addressed.
+
+\begin{enumerate}
+  \item {x*y == x y (not xy. Notice the space)}
+  \item {Subscripts can only be one character long (No Greek Letters!)}
+  \item {Only two commands right now: \ intop and \ frac{d}{dx}}
+  \item {Basic Syntax: \ command{expression}}
+  \begin{enumerate}
+    \item {For integral: \ intop{expression dvars}}
+    \item {For derivative: \ frac{d}{dx}{expression}}
+    \item {For General: no slashes within the expression. i.e: \ frac{d}{dx}{sin(x)} would not be a \ sin(x)}
+    \item {For General: No greek charecters, while some work at this time not all do.}
+  \end{enumerate}
+\end{enumerate}`
+
+\section{Results}
+
+At this time there are plenty of boundary conditions that still need to be assesed, which is to be expected for any parser. However we have shown a proof of concept with the current implimentation as we can show that it works with integrals and derivatives of functions. An example would be the following function:
+
+\write18{python3 symtex.py '\intop{2 dx}' > intermediate.txt}
+$$\input{intermediate.txt}$$
+
+Which utilized the following code writen in \LaTeX:
+
+\begin{lstlisting}
+
+1. \write18{python3 symtex.py '\intop{2 dx}' > intermediate.txt}
+2. $$\input{intermediate.txt}$$
+
+\end{lstlisting}
+
+%$$
+%\frac{d}{dx}{(\frac{y}{x}+\sin(x)x)}=x \cos{\left (x \right )} + \sin{\left (x \right )} - \frac{y}{x^{2}}
+%$$
+
+%$$
+%\intop{7^{y\alpha} \sin{y} d\alpha}=\begin{cases} \alpha \sin{\left (y \right )} & \text{for}\: y \log{\left (7 \right )} = 0 \\\frac{7^{\alpha y} \sin{\left (y \right )}}{y \log{\left (7 \right )}} & \text{otherwise} \end{cases}
+%$$
+%$$
+%\intop{7^{y\alpha} \frac{\sin{y}}{y} dy}=7^{yalpha} \operatorname{Si}{\left (y \right )}
+%$$
+
+
+\section{Conclusion}
+In conclusion there is plenty of work that still can be done, however the main proof of concept is done and works great. We have shown in this report that we can have latex, using python's SymPy library, solve integrals and derivatives, then format it all for the user. The next steps are to continue developing the parser inorder to allow users to use more syntax. Then to start implimenting more operations, binary and unary, to allow for more ways in which the user can use this package to have \LaTeX solve then format mathematical equations quickly and easily.
+
+
+
+
+\end{document}
