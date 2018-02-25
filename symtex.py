@@ -121,7 +121,7 @@ str_input = re.sub(r'(\w)[)] [(](\w)',r'\1[)]*[(]\2',str_input)
 # Get rid of the annoying frac symbols
 str_input = re.sub(r'[\\]frac[\(]','(',str_input)
 
-commands = ['frac','sin','cos','tan','exp','log','Ei','Si','arcsin','asin','acos','atan']
+commands = ['frac','sin','cos','tan','exp','log','Ei','Si','arcsin','asin','acos','atan','acot','asec','acsc','sqrt']
 
 str_input = re.sub(r' ','',str_input)
 
