@@ -85,12 +85,10 @@ while(i < len(latex_input)-1):
 
 # Use some Regex magic to get the input string to the format we want
 str_input = latex_input[i:-1]
-print(str_input)
 
 str_input = re.sub(r'\}\{', ')/(', str_input)
 str_input = re.sub(r'[\{]', '(', str_input)
 str_input = re.sub(r'[\}]', ')', str_input)
-print(str_input)
 
 #for i in range(len(variable_dict)):
 #    str_input = re.sub(r'[^]%s' % variable_dict[i][0],'[^]%s' % variable_dict[i][1],str_input)
@@ -98,12 +96,10 @@ print(str_input)
     
 for i in range(len(variable_dict)):
     str_input = re.sub(r'%s' % variable_dict[i][0],'%s' % variable_dict[i][1],str_input)
-print(str_input)
 
 # Get rid of the dx/dy
 for i in range(len(variable_dict)):
     str_input = re.sub(r'd%s' % variable_dict[i][1],'',str_input)
-print(str_input)
 
 if(len(variable_dict) > 1):
     for i in range(len(variable_dict)):
@@ -134,11 +130,11 @@ for c in commands:
 
 x = symbols(variables)
 
-print(str_command)
-print(str_input)
-print(variables)
-print(str(latex(integrate(str_input,x))))
-print("\""+str_command+"\"","\"intop\"")
+#print(str_command)
+#print(str_input)
+#print(variables)
+#print(str(latex(integrate(str_input,x))))
+#print("\""+str_command+"\"","\"intop\"")
 
 if(str_command == "intop" or str_command == "intop " or str_command == "int"):
     print(latex_input+" = "+str(latex(integrate(str_input,x))))
