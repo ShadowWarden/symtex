@@ -108,10 +108,8 @@ if(len(variable_dict) > 1):
             str_input = re.sub(r'%s%s' % (variable_dict[0][1], variable_dict[1][1]),'%s*%s' % (variable_dict[0][1],variable_dict[1][1]),str_input)
 
 for i in range(len(variable_dict)):
-    str_input = re.sub(r'(\w)%s' % variable_dict[i][1],r'\1*%s' % variable_dict[i][1],str_input)
-    str_input = re.sub(r'%s(\w)' % variable_dict[i][1],r'%s*\1' % variable_dict[i][1],str_input)
-    str_input = re.sub(r'[)]%s' %variable_dict[i][1],r')*%s'% variable_dict[i][1],str_input)
-    str_input = re.sub(r'%s[(]'%variable_dict[i][1] ,r'%s*('% variable_dict[i][1],str_input)
+    str_input = re.sub(r'(\w) %s' % variable_dict[i][1],r'\1*%s' % variable_dict[i][1],str_input)
+    str_input = re.sub(r'%s (\w)' % variable_dict[i][1],r'%s*\1' % variable_dict[i][1],str_input)
     str_input = re.sub(r'[)] %s'%variable_dict[i][1],r')*%s'% variable_dict[i][1],str_input)
     str_input = re.sub(r'%s [(]'%variable_dict[i][1],r'%s*('% variable_dict[i][1],str_input)
 
@@ -123,7 +121,12 @@ str_input = re.sub(r'(\w)[)] [(](\w)',r'\1[)]*[(]\2',str_input)
 # Get rid of the annoying frac symbols
 str_input = re.sub(r'[\\]frac[\(]','(',str_input)
 
-commands = ['frac','sin','cos','tan','log','Ei','Si']
+commands = ['frac','sin','cos','tan','exp','log','Ei','Si','arcsin']
+
+str_input = re.sub(r' ','',str_input)
+
+if(str_input == ""):
+    str_input = "1"
 
 for c in commands:
     str_input = re.sub(r'[\\]%s' % c,'%s' % c,str_input)
