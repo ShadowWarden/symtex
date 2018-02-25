@@ -41,7 +41,8 @@ for j in range(i,len(latex_input)-1):
                 variable_dict.append(["\\"+latex_input[j+1:k],buffer_var])
                 count_var += 1
         elif(latex_input[j+1] == '}' or latex_input[j+1] == '^'):
-            print("Here",latex_input[j],latex_input[j+1],buffer_var)
+            continue
+    #            print("Here",latex_input[j],latex_input[j+1],buffer_var)
         else:
             k = j+1
             while(latex_input[k] != '\\' and latex_input[k] != '}' and latex_input[k] != ' ' and k != len(latex_input)-1):
@@ -108,10 +109,8 @@ if(len(variable_dict) > 1):
             str_input = re.sub(r'%s%s' % (variable_dict[0][1], variable_dict[1][1]),'%s*%s' % (variable_dict[0][1],variable_dict[1][1]),str_input)
 
 for i in range(len(variable_dict)):
-    str_input = re.sub(r'(\w)%s' % variable_dict[i][1],r'\1*%s' % variable_dict[i][1],str_input)
-    str_input = re.sub(r'%s(\w)' % variable_dict[i][1],r'%s*\1' % variable_dict[i][1],str_input)
-    str_input = re.sub(r'[)]%s' %variable_dict[i][1],r')*%s'% variable_dict[i][1],str_input)
-    str_input = re.sub(r'%s[(]'%variable_dict[i][1] ,r'%s*('% variable_dict[i][1],str_input)
+    str_input = re.sub(r'(\w) %s' % variable_dict[i][1],r'\1*%s' % variable_dict[i][1],str_input)
+    str_input = re.sub(r'%s (\w)' % variable_dict[i][1],r'%s*\1' % variable_dict[i][1],str_input)
     str_input = re.sub(r'[)] %s'%variable_dict[i][1],r')*%s'% variable_dict[i][1],str_input)
     str_input = re.sub(r'%s [(]'%variable_dict[i][1],r'%s*('% variable_dict[i][1],str_input)
 
@@ -121,23 +120,28 @@ str_input = re.sub(r'(\w) (\w)',r'\1*\2',str_input)
 str_input = re.sub(r'(\w)[)] [(](\w)',r'\1[)]*[(]\2',str_input)
 
 # Get rid of the annoying frac symbols
-str_input = re.sub(r'[\\]frac[\(]','(',str_input)
+str_input = re.sub(r'frac[\(]','(',str_input)
 
-commands = ['frac','sin','cos','tan','log','Ei','Si']
+#print(str_input)
+commands = ['abs','frac','sin','cos','tan','exp','log','Ei','Si','arcsin','asin','acos','atan','acot','asec','acsc','sqrt']
+
+str_input = re.sub(r' ','',str_input)
+
+if(str_input == ""):
+    str_input = "1"
 
 for c in commands:
-    str_input = re.sub(r'[\\]%s' % c,'%s' % c,str_input)
+    str_input = re.sub(r'%s' % c,'',str_input)
 
 x = symbols(variables)
 
 #print(str_command)
-#print(str_input)
 #print(variables)
 #print(str(latex(integrate(str_input,x))))
 #print("\""+str_command+"\"","\"intop\"")
 
 if(str_command == "intop" or str_command == "intop " or str_command == "int"):
-    print(latex_input+" = "+str(latex(integrate(str_input,x))))
+    print(latex(integrate(str_input,x)))
 elif(str_command == "diff"):
-    print(latex_input+" = "+latex(diff(str_input,x)))
+    print(latex(diff(str_input,x)))
 
