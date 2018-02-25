@@ -90,14 +90,14 @@ There have been a few assumptions made as this is just the start of this project
 At this time there are plenty of boundary conditions that still need to be assesed, which is to be expected for any parser. However we have shown a proof of concept with the current implimentation as we can show that it works with integrals and derivatives of functions. An example would be the following function:
 
 \write18{python3 symtex.py '\intop{2 dx}' > intermediate.txt}
-$$\input{intermediate.txt}$$
+$$\intop{2 dx} = \input{intermediate.txt}$$
 
 Which utilized the following code writen in \LaTeX:
 
 \begin{lstlisting}
 
 1. \write18{python3 symtex.py '\intop{2 dx}' > intermediate.txt}
-2. $$\input{intermediate.txt}$$
+2. $$\intop{2 dx} = \input{intermediate.txt}$$
 
 \end{lstlisting}
 
