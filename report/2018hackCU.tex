@@ -25,6 +25,9 @@
 \usepackage{color}
 \usepackage{amsmath}
 
+\newcommand{\eval}[1]{\immediate\write18{python3 symtex.py '#1' > intermediate.txt}\input{intermediate.txt}}
+
+
 \lstdefinestyle{custompy}{
   belowcaptionskip=1\baselineskip,
   breaklines=true,
@@ -89,15 +92,15 @@ There have been a few assumptions made as this is just the start of this project
 
 At this time there are plenty of boundary conditions that still need to be assesed, which is to be expected for any parser. However we have shown a proof of concept with the current implimentation as we can show that it works with integrals and derivatives of functions. An example would be the following function:
 
-\write18{python3 symtex.py '\intop{2 dx}' > intermediate.txt}
-$$\intop{2 dx} = \input{intermediate.txt}$$
+%eval\{\intop{2 dx}}
+$$\intop{2 dx} = \eval{\intop{2 dx}} $$
 
 Which utilized the following code writen in \LaTeX:
 
 \begin{lstlisting}
 
-1. \write18{python3 symtex.py '\intop{2 dx}' > intermediate.txt}
-2. $$\intop{2 dx} = \input{intermediate.txt}$$
+1. \newcommand{\eval}[1]{\immediate\write18{python3 symtex.py '#1' > intermediate.txt}\input{intermediate.txt}}
+2. $$\intop{2 dx} = \eval{\intop{2 dx}}$$
 
 \end{lstlisting}
 
@@ -116,7 +119,12 @@ Which utilized the following code writen in \LaTeX:
 \section{Conclusion}
 In conclusion there is plenty of work that still can be done, however the main proof of concept is done and works great. We have shown in this report that we can have latex, using python's SymPy library, solve integrals and derivatives, then format it all for the user. The next steps are to continue developing the parser inorder to allow users to use more syntax. Then to start implimenting more operations, binary and unary, to allow for more ways in which the user can use this package to have \LaTeX solve then format mathematical equations quickly and easily.
 
+\section{Test Cases}
 
+\begin{enumerate}
+  \item {$$ \intop{\frac{1}{x} dx} = \eval{\intop{frac{1}{x} dx}} $$}
 
+  \item {$$ \intop{\frac{2}{\alpha} d\alpha} = \eval{\intop{frac{2}{alpha} dalpha}} $$}
+\end{enumerate}
 
 \end{document}
