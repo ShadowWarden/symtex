@@ -34,12 +34,13 @@ for j in range(i,len(latex_input)-1):
                 k = k+1
             if(count_var == 0):
                 variables += buffer_var
-                variable_dict.append(["\\"+latex_input[j+1:k],buffer_var])
+                variable_dict.append([latex_input[j+1:k],buffer_var])
                 count_var += 1
             else:
                 variables += " "+buffer_var
-                variable_dict.append(["\\"+latex_input[j+1:k],buffer_var])
+                variable_dict.append([latex_input[j+1:k],buffer_var])
                 count_var += 1
+
         elif(latex_input[j+1] == '}' or latex_input[j+1] == '^'):
             continue
     #            print("Here",latex_input[j],latex_input[j+1],buffer_var)
@@ -79,11 +80,11 @@ while(i < len(latex_input)-1):
         break
     i = i+1
 
-#print(str_command)
+print(str_command)
 
 # Variable sweep
-#print(variable_dict)
-
+print(variable_dict)
+print(variables)
 # Use some Regex magic to get the input string to the format we want
 str_input = latex_input[i:-1]
 
@@ -93,7 +94,6 @@ str_input = re.sub(r'[\}]', ')', str_input)
 
 #for i in range(len(variable_dict)):
 #    str_input = re.sub(r'[^]%s' % variable_dict[i][0],'[^]%s' % variable_dict[i][1],str_input)
-#print(str_input)
     
 for i in range(len(variable_dict)):
     str_input = re.sub(r'%s' % variable_dict[i][0],'%s' % variable_dict[i][1],str_input)
@@ -102,6 +102,7 @@ for i in range(len(variable_dict)):
 for i in range(len(variable_dict)):
     str_input = re.sub(r'd%s' % variable_dict[i][1],'',str_input)
 
+print(str_input)
 if(len(variable_dict) > 1):
     for i in range(len(variable_dict)):
         for j in range(i,len(variable_dict)):
@@ -129,10 +130,6 @@ str_input = re.sub(r' ','',str_input)
 
 if(str_input == ""):
     str_input = "1"
-
-for c in commands:
-    str_input = re.sub(r'%s' % c,'',str_input)
-
 x = symbols(variables)
 
 #print(str_command)
