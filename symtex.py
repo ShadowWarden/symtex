@@ -34,72 +34,74 @@ variables = ""
 offset = 0
 count = 0
 count_var = 0
-i = 1
+i = 0
+latex_input = re.sub(r'\}\{', ')/(', latex_input)
+latex_input = re.sub(r'[\{]', '(', latex_input)
+latex_input = re.sub(r'[\}]', ')', latex_input)
+
 for j in range(i,len(latex_input)-1):
-    if(latex_input[j] == 'd' and latex_input[j+1] != '}'):
+    if(latex_input[j] == 'd' and latex_input[j+1] != ')'):
         buffer_var = ""
         if(latex_input[j+1] == '\\'):
             k = j+2
-            while(latex_input[k] != '\\' and latex_input[k] != '}' and latex_input[k] != ' ' and k != len(latex_input)-1):
+            while(latex_input[k] != '\\' and latex_input[k] != ')' and latex_input[k] != ' ' and k != len(latex_input)-1):
                 buffer_var += latex_input[k]
                 k = k+1
-            if(count_var == 0):
+            if(count_var == 0 and buffer_var != "group" and buffer_var != "endgroup"):
                 variables += buffer_var
                 variable_dict.append([latex_input[j+1:k],buffer_var])
                 count_var += 1
-            else:
+            elif(buffer_var != "group" and buffer_var != "endgroup"):
                 variables += " "+buffer_var
                 variable_dict.append([latex_input[j+1:k],buffer_var])
                 count_var += 1
 
-        elif(latex_input[j+1] == '}' or latex_input[j+1] == '^'):
+        elif(latex_input[j+1] == ')' or latex_input[j+1] == '^'):
             continue
     #            print("Here",latex_input[j],latex_input[j+1],buffer_var)
         else:
             k = j+1
-            while(latex_input[k] != '\\' and latex_input[k] != '}' and latex_input[k] != ' ' and k != len(latex_input)-1):
+            while(latex_input[k] != '\\' and latex_input[k] != ')' and latex_input[k] != ' ' and k != len(latex_input)-1):
                 buffer_var += latex_input[k]
                 k = k+1
-            if(count_var == 0):
+            if(count_var == 0 and buffer_var != "group" and buffer_var != "endgroup"):
                 variables += buffer_var
                 variable_dict.append([latex_input[j+1:k],buffer_var])
                 count_var += 1
-            else:
+            elif(buffer_var != "group" and buffer_var != "endgroup"):
                 variables += " "+buffer_var
                 variable_dict.append([latex_input[j+1:k],buffer_var])
                 count_var += 1
 
 # Command String
+flag = 0
 while(i < len(latex_input)-1):
-    if(latex_input[i]!='{'):
+    if(latex_input[i] != '(' and flag==0):
         str_command += latex_input[i] 
     if(str_command == "frac"):
         str_command = "diff"
-        j = i+2
+        j = i
         N = ""
-        while(latex_input[j] != "}"):
+        while(latex_input[j] != ')'):
             N += latex_input[j]
-            j += 1
+            j += 1 
         j += 1
-        if(latex_input[j] == '{'):
+        if(latex_input[j] == '('):
             j += 1
-        while(latex_input[j] != "}"):
+        while(latex_input[j] != ')'):
             j += 1
         i = j
-    if(latex_input[i] == '{'):
+        flag = 1
+    if(latex_input[i] == '('):
         i = i+1
         break
     i = i+1
-
 
 # Variable sweep
 # Use some Regex magic to get the input string to the format we want
 str_input = latex_input[i:-1]
 
-str_input = re.sub(r'\}\{', ')/(', str_input)
-str_input = re.sub(r'[\{]', '(', str_input)
-str_input = re.sub(r'[\}]', ')', str_input)
-
+latex_input = re.sub(r'[\\](\w)', '\1', latex_input)
 #for i in range(len(variable_dict)):
 #    str_input = re.sub(r'[^]%s' % variable_dict[i][0],'[^]%s' % variable_dict[i][1],str_input)
     
