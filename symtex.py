@@ -1,9 +1,20 @@
-# symtex.py
-#
-# (Fill in your names/emails here!)
+# symtex (symtex.py) 
+# Copyright 2018 Omkar H. Ramachandran
+# This project is licensed under GPL Version 3. For more information on what
+# the license entails, refer to the COPYING file in the root directory of the
+# project or head over to <www.gnu.org/licenses>
+# 
 # Omkar H. Ramachandran
 # omkar.ramachandran@colorado.edu
 #
+# Aidan Bohenick
+# aidan.bohenick@colorado.edu
+#
+# Anthony Tracy
+# anthony.tracy@colorado.edu
+#
+# Kellie Gadeken
+# kgadeken7@gmail.com
 #
 # SymTex Source
 #
