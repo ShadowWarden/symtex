@@ -15,6 +15,8 @@ $\intop x^{-1}\exp{x} dx$, run,
 
 $\intop{x^{-1}\exp{x} dx} = \eval{\intop{x^{-1} exp{x} dx}}$
 
+4. Compile your LaTeX program with "pdflatex -shell-escape <filename>.tex"
+
 ## Basic Syntax Rules
 
 1. Remove all slashes except the very first slash for either \intop or
