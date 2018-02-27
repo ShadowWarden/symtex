@@ -21,7 +21,7 @@ $\intop{x^{-1}\exp{x} dx} = \eval{\intop{x^{-1} exp{x} dx}}$
 
 1. Remove all slashes except the very first slash for either \intop or
 \frac{d}{dx}. For instance, \frac{d}{dx}{\frac{\sin{x}}{x}} would be passed to
-\eval as \eval{\fra{d}{dx}{frac{sin{x}}{x}}}
+\eval as \eval{\frac{d}{dx}{frac{sin{x}}{x}}}
 
 2. All independent variables and constants must be seperated by a whitespace. Thus,
 something like $xy$ is not allowed. You would write it as $x y$. Same goes for
