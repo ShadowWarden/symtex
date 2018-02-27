@@ -13,7 +13,7 @@ your LaTeX file.
 3. To evaluate an integral or derivative - for instance 
 $\intop x^{-1}\exp{x} dx$, run,
 
-$\intop{x^{-1}\exp{x} dx} = \eval{\intop{x^{-1} exp{x} dx}}$
+$\intop{x^{-1}\exp{x} dx} = \eval{intop{x^{-1} exp{x} dx}}$
 
 4. Compile your LaTeX program with "pdflatex -shell-escape <filename>.tex"
 
