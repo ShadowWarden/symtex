@@ -41,6 +41,7 @@ wrt one variable is allowed.
 
 ## What do I do if I find a bug and/or want some feature added?
 
-Well, if you know Python/LaTeX, you are more than welcome to fix it. If not, send
-an email to omkar.ramachandran@colorado.edu and I'll try fixing it if I find some
-time 
+Well, if you know Python/LaTeX, you are more than welcome to fix it - send me 
+an email and I'd be happy to take a look at your changes! If not, send
+an email to omkar.ramachandran@colorado.edu and I'll try fixing it in the near
+future. 
