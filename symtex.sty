@@ -1,0 +1,6 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{symtex}[2018/02/26 symtex]
+
+\newcommand{\eval}[1]{\immediate\write18{python3 symtex.py "#1" > intermediate.txt}\expandafter\input{intermediate.txt}}
+
+\newcommand{\cleanup}{\immediate\write18{rm intermediate.txt}}
